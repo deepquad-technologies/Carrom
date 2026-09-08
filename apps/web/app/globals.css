@@ -1,0 +1,293 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-sans: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
+  color-scheme: dark;
+
+  /* Text scale, driven by the accessibility settings. */
+  --text-scale: 1;
+
+  /* Theme palette. Channels rather than hex so Tailwind can apply opacity. */
+  --c-ink-950: 7 8 13;
+  --c-ink-900: 12 14 21;
+  --c-ink-850: 18 21 31;
+  --c-ink-800: 24 28 40;
+  --c-ink-700: 35 40 56;
+  --c-ink-600: 51 58 78;
+  --c-ink-500: 74 82 104;
+  --c-brass-400: 242 201 76;
+  --c-brass-500: 217 169 60;
+  --c-brass-600: 179 134 42;
+  --c-felt-400: 77 214 160;
+  --c-felt-500: 47 174 127;
+  --glow-a: rgba(242, 201, 76, 0.06);
+  --glow-b: rgba(77, 214, 160, 0.05);
+}
+
+/* ------------------------------ interface themes -------------------------- */
+
+[data-theme='dark'] {
+  --c-ink-950: 8 9 12;
+  --c-ink-900: 14 16 20;
+  --c-ink-850: 20 23 29;
+  --c-ink-800: 28 32 40;
+  --c-ink-700: 40 45 56;
+  --c-ink-600: 58 65 78;
+  --c-ink-500: 84 92 108;
+  --c-brass-400: 168 178 196;
+  --c-brass-500: 138 147 166;
+  --c-brass-600: 108 117 134;
+  --c-felt-400: 122 200 168;
+  --c-felt-500: 88 160 130;
+  --glow-a: rgba(160, 172, 192, 0.05);
+  --glow-b: rgba(120, 140, 160, 0.04);
+}
+
+[data-theme='neon'] {
+  --c-ink-950: 5 7 12;
+  --c-ink-900: 9 13 20;
+  --c-ink-850: 13 19 28;
+  --c-ink-800: 18 26 38;
+  --c-ink-700: 26 38 54;
+  --c-ink-600: 38 56 78;
+  --c-ink-500: 56 80 108;
+  --c-brass-400: 57 255 176;
+  --c-brass-500: 40 214 148;
+  --c-brass-600: 28 170 118;
+  --c-felt-400: 90 220 255;
+  --c-felt-500: 60 180 220;
+  --glow-a: rgba(57, 255, 176, 0.08);
+  --glow-b: rgba(90, 220, 255, 0.06);
+}
+
+[data-theme='royal'] {
+  --c-ink-950: 18 10 20;
+  --c-ink-900: 26 15 30;
+  --c-ink-850: 34 20 39;
+  --c-ink-800: 44 26 50;
+  --c-ink-700: 60 36 68;
+  --c-ink-600: 82 50 92;
+  --c-ink-500: 110 70 122;
+  --c-brass-400: 242 97 140;
+  --c-brass-500: 214 76 118;
+  --c-brass-600: 176 56 94;
+  --c-felt-400: 190 150 255;
+  --c-felt-500: 156 118 220;
+  --glow-a: rgba(242, 97, 140, 0.08);
+  --glow-b: rgba(160, 110, 220, 0.06);
+}
+
+[data-theme='jungle'] {
+  --c-ink-950: 10 20 12;
+  --c-ink-900: 14 28 17;
+  --c-ink-850: 19 36 23;
+  --c-ink-800: 25 46 30;
+  --c-ink-700: 35 62 41;
+  --c-ink-600: 48 84 56;
+  --c-ink-500: 66 112 76;
+  --c-brass-400: 190 214 92;
+  --c-brass-500: 160 184 68;
+  --c-brass-600: 128 148 48;
+  --c-felt-400: 127 196 92;
+  --c-felt-500: 96 160 68;
+  --glow-a: rgba(190, 214, 92, 0.07);
+  --glow-b: rgba(96, 176, 96, 0.06);
+}
+
+[data-theme='galaxy'] {
+  --c-ink-950: 10 8 20;
+  --c-ink-900: 15 12 29;
+  --c-ink-850: 20 16 38;
+  --c-ink-800: 27 22 50;
+  --c-ink-700: 38 31 70;
+  --c-ink-600: 54 44 96;
+  --c-ink-500: 76 64 130;
+  --c-brass-400: 167 139 250;
+  --c-brass-500: 140 114 220;
+  --c-brass-600: 112 90 182;
+  --c-felt-400: 110 190 255;
+  --c-felt-500: 84 152 220;
+  --glow-a: rgba(167, 139, 250, 0.09);
+  --glow-b: rgba(110, 190, 255, 0.06);
+}
+
+/* --------------------------- accessibility switches ----------------------- */
+
+/*
+ * High contrast lifts every border and dims nothing, for players who cannot
+ * pick out a 10%-white hairline on a dark panel.
+ */
+.high-contrast {
+  --c-ink-950: 0 0 0;
+  --c-ink-900: 6 7 10;
+  --c-ink-850: 12 14 18;
+}
+
+.high-contrast body {
+  background-image: none;
+}
+
+.high-contrast .panel,
+.high-contrast .panel-tight,
+.high-contrast .btn-ghost,
+.high-contrast .field,
+.high-contrast .chip,
+.high-contrast .stat {
+  border-color: rgba(255, 255, 255, 0.55);
+}
+
+.high-contrast .text-white\/40,
+.high-contrast .text-white\/45,
+.high-contrast .text-white\/50,
+.high-contrast .text-white\/55,
+.high-contrast .text-white\/60,
+.high-contrast .text-white\/65 {
+  color: rgba(255, 255, 255, 0.92);
+}
+
+/* The player asked for calm, so honour it everywhere, not only where we remembered. */
+.reduce-motion *,
+.reduce-motion *::before,
+.reduce-motion *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+
+
+html {
+  font-size: calc(16px * var(--text-scale, 1));
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  @apply bg-ink-950 text-white/90 antialiased;
+  background-image:
+    radial-gradient(1200px 700px at 20% -10%, var(--glow-a), transparent 60%),
+    radial-gradient(900px 600px at 90% 10%, var(--glow-b), transparent 55%);
+  background-attachment: fixed;
+}
+
+@layer components {
+  .panel {
+    @apply rounded-2xl border border-white/10 bg-ink-900/80 shadow-card backdrop-blur;
+  }
+
+  .panel-tight {
+    @apply rounded-xl border border-white/10 bg-ink-850/80;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm
+           font-semibold transition active:scale-[0.98]
+           disabled:cursor-not-allowed disabled:opacity-45 disabled:active:scale-100;
+  }
+
+  .btn-primary {
+    @apply btn bg-gradient-to-b from-brass-400 to-brass-600 text-ink-950
+           shadow-[0_6px_18px_-6px_rgb(var(--c-brass-400)/0.7)] hover:brightness-110;
+  }
+
+  .btn-ghost {
+    @apply btn border border-white/15 bg-white/5 text-white/85 hover:bg-white/10;
+  }
+
+  .btn-danger {
+    @apply btn border border-red-500/40 bg-red-500/10 text-red-200 hover:bg-red-500/20;
+  }
+
+  .btn-lg {
+    @apply px-6 py-3.5 text-base;
+  }
+
+  .field {
+    @apply w-full rounded-xl border border-white/12 bg-ink-950/70 px-4 py-3 text-sm
+           text-white placeholder:text-white/35
+           focus:border-brass-400/60 focus:outline-none focus:ring-2 focus:ring-brass-400/25;
+  }
+
+  .label {
+    @apply mb-1.5 block text-xs font-medium uppercase tracking-wider text-white/45;
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full border border-white/12
+           bg-white/[0.06] px-3 py-1 text-xs font-medium text-white/75;
+  }
+
+  .stat {
+    @apply rounded-xl border border-white/8 bg-white/[0.03] px-3 py-2.5;
+  }
+}
+
+/* Rarity treatments, shared by the locker, crates and reward reveals. */
+.rarity-common {
+  --rarity: #9aa5b1;
+}
+.rarity-rare {
+  --rarity: #4aa8f0;
+}
+.rarity-epic {
+  --rarity: #a78bfa;
+}
+.rarity-mythic {
+  --rarity: #f2618c;
+}
+.rarity-legendary {
+  --rarity: #f2c94c;
+}
+
+.rarity-card {
+  border-color: color-mix(in srgb, var(--rarity) 45%, transparent);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--rarity) 20%, transparent),
+    0 10px 30px -18px var(--rarity);
+}
+
+.rarity-glow {
+  box-shadow: 0 0 26px -6px var(--rarity);
+}
+
+.shimmer-text {
+  background: linear-gradient(
+    100deg,
+    rgba(255, 255, 255, 0.55) 20%,
+    #fff 40%,
+    rgba(255, 255, 255, 0.55) 60%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  @apply animate-shimmer;
+}
+
+/* Slim scrollbars so panels do not jump when content overflows. */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.16) transparent;
+}
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+*::-webkit-scrollbar-thumb {
+  @apply rounded-full bg-white/15;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

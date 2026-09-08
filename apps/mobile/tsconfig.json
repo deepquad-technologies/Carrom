@@ -1,0 +1,20 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": true,
+    "jsx": "react-jsx",
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@carrom/types": ["../../packages/types/src/index.ts"],
+      "@carrom/config": ["../../packages/config/src/index.ts"],
+      "@carrom/physics": ["../../packages/physics/src/index.ts"],
+      "@carrom/game-engine": ["../../packages/game-engine/src/index.ts"],
+      "@carrom/content": ["../../packages/content/src/index.ts"],
+      "@carrom/ui": ["../../packages/ui/src/index.ts"]
+    }
+  },
+  "include": ["**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules"]
+}

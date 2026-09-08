@@ -1,0 +1,56 @@
+{
+  "expo": {
+    "name": "Carrom Club",
+    "slug": "carrom-club",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "scheme": "carromclub",
+    "userInterfaceStyle": "dark",
+    "backgroundColor": "#07080d",
+    "splash": {
+      "backgroundColor": "#07080d",
+      "resizeMode": "contain"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.carromclub.app",
+      "infoPlist": {
+        "LSApplicationQueriesSchemes": [
+          "fbapi",
+          "fb-messenger-share-api"
+        ]
+      }
+    },
+    "android": {
+      "package": "com.carromclub.app",
+      "adaptiveIcon": {
+        "backgroundColor": "#07080d"
+      },
+      "softwareKeyboardLayoutMode": "pan"
+    },
+    "plugins": [
+      "expo-asset",
+      "expo-font"
+    ],
+    "extra": {
+      "facebookAppId": "",
+      "googleExpoClientId": "",
+      "googleIosClientId": "",
+      "googleAndroidClientId": "",
+      "googleWebClientId": "",
+      "apiPort": "4000"
+    },
+    "web": {
+      "bundler": "metro",
+      "favicon": null
+    },
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ]
+  }
+}

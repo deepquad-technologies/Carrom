@@ -1,0 +1,169 @@
+/*
+ * Print styling for the technical manual.
+ *
+ * The palette is the board's own — teak frame, ivory bed, brass pocket rims,
+ * the one red queen — so the printed document belongs to the same product as
+ * the game. Everything is set for paper rather than a screen: a serif for
+ * headings, generous measure, and tables that never run off the page.
+ */
+
+@page {
+  size: A4;
+  margin: 20mm 18mm;
+}
+
+:root {
+  --ink: #241a12;
+  --ink-2: #5c4a38;
+  --ink-3: #85715a;
+  --teak: #8a5424;
+  --brass: #a8761a;
+  --queen: #b8322a;
+  --felt: #2c6f52;
+  --rule: #d9c9a8;
+  --rule-soft: #ece1c9;
+  --bed: #faf5e9;
+}
+
+body {
+  font-family: 'Segoe UI', -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  font-size: 10.2pt;
+  line-height: 1.62;
+  color: var(--ink);
+  max-width: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* ------------------------------- headings -------------------------------- */
+
+h1, h2, h3, h4 {
+  font-family: Georgia, 'Times New Roman', serif;
+  color: var(--ink);
+  line-height: 1.2;
+  margin-top: 1.4em;
+  margin-bottom: 0.35em;
+  page-break-after: avoid;
+}
+
+h1 {
+  font-size: 26pt;
+  letter-spacing: -0.4pt;
+  border-bottom: 2.5pt solid var(--ink);
+  padding-bottom: 8pt;
+  margin-bottom: 6pt;
+}
+
+h2 {
+  font-size: 15.5pt;
+  border-top: 0.8pt solid var(--rule);
+  padding-top: 11pt;
+  margin-top: 22pt;
+  page-break-before: auto;
+}
+
+h3 {
+  font-size: 12pt;
+  color: var(--teak);
+}
+
+h4 {
+  font-size: 9pt;
+  font-family: 'Segoe UI', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.9pt;
+  color: var(--ink-3);
+  margin-top: 1.5em;
+}
+
+/* --------------------------------- text ---------------------------------- */
+
+p { margin: 0 0 0.75em; orphans: 3; widows: 3; }
+strong { color: var(--ink); font-weight: 600; }
+em { color: var(--ink-2); }
+
+ul, ol { margin: 0 0 0.85em; padding-left: 1.4em; }
+li { margin-bottom: 0.28em; }
+
+a { color: var(--teak); text-decoration: none; }
+
+blockquote {
+  border-left: 2.5pt solid var(--brass);
+  background: var(--bed);
+  margin: 0 0 0.9em;
+  padding: 7pt 11pt;
+  color: var(--ink-2);
+}
+
+hr {
+  border: 0;
+  border-top: 0.8pt solid var(--rule);
+  margin: 18pt 0;
+}
+
+/* --------------------------------- code ---------------------------------- */
+
+code {
+  font-family: 'Cascadia Mono', Consolas, 'SF Mono', Menlo, monospace;
+  font-size: 8.6pt;
+  background: var(--bed);
+  border: 0.5pt solid var(--rule-soft);
+  border-radius: 2pt;
+  padding: 0.5pt 3pt;
+}
+
+pre {
+  font-family: 'Cascadia Mono', Consolas, monospace;
+  font-size: 8.2pt;
+  line-height: 1.5;
+  background: var(--bed);
+  border: 0.6pt solid var(--rule);
+  border-left: 2.5pt solid var(--teak);
+  padding: 9pt 11pt;
+  overflow-x: hidden;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  page-break-inside: avoid;
+  margin: 0 0 1em;
+}
+
+pre code {
+  background: none;
+  border: 0;
+  padding: 0;
+  font-size: inherit;
+}
+
+/* -------------------------------- tables --------------------------------- */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 9pt;
+  margin: 0 0 1.1em;
+  page-break-inside: avoid;
+}
+
+thead th {
+  text-align: left;
+  font-size: 7.6pt;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.7pt;
+  color: var(--ink-3);
+  background: var(--bed);
+  border-bottom: 0.8pt solid var(--rule);
+  padding: 5pt 7pt;
+}
+
+tbody td {
+  padding: 5pt 7pt;
+  border-bottom: 0.5pt solid var(--rule-soft);
+  vertical-align: top;
+}
+
+tbody tr:last-child td { border-bottom: 0; }
+td:first-child { font-weight: 600; }
+
+/* A long word in a narrow cell must wrap, not push the table off the page. */
+td, th { word-break: break-word; }

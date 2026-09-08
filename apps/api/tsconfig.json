@@ -1,0 +1,18 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "lib": ["ES2022"],
+    "types": ["node"],
+    "noEmit": true,
+    "baseUrl": "../..",
+    "paths": {
+      "@carrom/types": ["packages/types/src/index.ts"],
+      "@carrom/config": ["packages/config/src/index.ts"],
+      "@carrom/physics": ["packages/physics/src/index.ts"],
+      "@carrom/game-engine": ["packages/game-engine/src/index.ts"],
+      "@carrom/content": ["packages/content/src/index.ts"],
+      "@carrom/networking": ["packages/networking/src/index.ts"]
+    }
+  },
+  "include": ["src", "test"]
+}

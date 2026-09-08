@@ -1,0 +1,55 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "lib": [
+      "ES2022",
+      "DOM",
+      "DOM.Iterable"
+    ],
+    "noEmit": true,
+    "allowJs": true,
+    "incremental": true,
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "jsx": "preserve",
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "./*"
+      ],
+      "@carrom/types": [
+        "../../packages/types/src/index.ts"
+      ],
+      "@carrom/config": [
+        "../../packages/config/src/index.ts"
+      ],
+      "@carrom/physics": [
+        "../../packages/physics/src/index.ts"
+      ],
+      "@carrom/game-engine": [
+        "../../packages/game-engine/src/index.ts"
+      ],
+      "@carrom/content": [
+        "../../packages/content/src/index.ts"
+      ],
+      "@carrom/ui": [
+        "../../packages/ui/src/index.ts"
+      ]
+    },
+    "isolatedModules": true
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

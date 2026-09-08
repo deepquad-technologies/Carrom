@@ -1,0 +1,66 @@
+name: carrom
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: carrom-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: carrom
+      POSTGRES_PASSWORD: carrom
+      POSTGRES_DB: carrom
+    ports:
+      - '5432:5432'
+    volumes:
+      - carrom-pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U carrom -d carrom']
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  redis:
+    image: redis:7-alpine
+    container_name: carrom-redis
+    restart: unless-stopped
+    command: ['redis-server', '--appendonly', 'yes']
+    ports:
+      # 6379 is commonly taken (Dapr ships its own redis), so publish on 6380.
+      - '6380:6379'
+    volumes:
+      - carrom-redisdata:/data
+    healthcheck:
+      test: ['CMD', 'redis-cli', 'ping']
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  # The API is commented out by default so `npm run dev` can own it locally.
+  # Uncomment to run the whole stack in Docker.
+  #
+  # api:
+  #   build:
+  #     context: ../..
+  #     dockerfile: infrastructure/docker/api.Dockerfile
+  #   container_name: carrom-api
+  #   restart: unless-stopped
+  #   depends_on:
+  #     postgres: { condition: service_healthy }
+  #     redis: { condition: service_healthy }
+  #   environment:
+  #     NODE_ENV: production
+  #     PORT: 4000
+  #     DATABASE_URL: postgres://carrom:carrom@postgres:5432/carrom
+  #     REDIS_URL: redis://redis:6379
+  #     CORS_ORIGINS: http://localhost:3000
+  #     JWT_ACCESS_SECRET: ${JWT_ACCESS_SECRET:?set a strong secret}
+  #     JWT_REFRESH_SECRET: ${JWT_REFRESH_SECRET:?set a strong secret}
+  #     FACEBOOK_APP_ID: ${FACEBOOK_APP_ID:-}
+  #     FACEBOOK_APP_SECRET: ${FACEBOOK_APP_SECRET:-}
+  #     GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID:-}
+  #   ports:
+  #     - '4000:4000'
+
+volumes:
+  carrom-pgdata:
+  carrom-redisdata:

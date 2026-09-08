@@ -1,0 +1,39 @@
+{
+  "name": "carrom",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Cross-platform multiplayer Carrom for web and mobile. Skill-based entertainment with virtual in-game coins only.",
+  "workspaces": [
+    "packages/*",
+    "apps/api",
+    "apps/web",
+    "apps/admin"
+  ],
+  "scripts": {
+    "dev": "npm run docker:up && npm-run-all --parallel dev:api dev:web",
+    "dev:api": "npm run dev --workspace=@carrom/api",
+    "dev:web": "npm run dev --workspace=@carrom/web",
+    "dev:admin": "npm run dev --workspace=@carrom/admin",
+    "dev:mobile": "npm run start --prefix apps/mobile",
+    "build": "npm run build --workspace=@carrom/api && npm run build --workspace=@carrom/web",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "test": "npm run test --workspace=@carrom/api && npm run test --workspace=@carrom/web",
+    "lint": "eslint . --ext .ts,.tsx",
+    "db:migrate": "npm run migrate --workspace=@carrom/api",
+    "db:seed": "npm run seed --workspace=@carrom/api",
+    "docker:up": "docker compose -f infrastructure/docker/docker-compose.yml up -d",
+    "docker:down": "docker compose -f infrastructure/docker/docker-compose.yml down",
+    "test:e2e": "npm run test:e2e --workspace=@carrom/api",
+    "dev:mobile:web": "npm run web --prefix apps/mobile",
+    "dev:all": "npm run docker:up && npm-run-all --parallel dev:api dev:web dev:admin",
+    "stop": "npm run docker:down"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.1",
+    "npm-run-all": "^4.1.5",
+    "typescript": "^5.6.3"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

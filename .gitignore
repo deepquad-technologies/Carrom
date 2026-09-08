@@ -1,0 +1,50 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+build/
+.next/
+out/
+*.tsbuildinfo
+
+# Expo and native builds
+.expo/
+.expo-shared/
+apps/mobile/android/
+apps/mobile/ios/
+*.apk
+*.aab
+*.ipa
+
+# Environment files.
+#
+# Only the .example files are committed. A real .env carries JWT signing
+# secrets, database credentials and payment keys — none of which belong in a
+# repository, and all of which are injected as environment variables in a
+# deployment.
+.env
+.env.*
+!.env.example
+!.env.local.example
+
+# Logs and local runtime noise
+*.log
+npm-debug.log*
+yarn-error.log*
+coverage/
+.vitest/
+
+# Editor and OS
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# Local scratch: throwaway probes and one-off scripts belong here rather than
+# being committed and then wondered about later.
+scratch/
+tmp/
+*.local.ts
+*.local.mjs
